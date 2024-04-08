@@ -10,12 +10,7 @@ CLIENTE = os.getenv('CLIENTE')
 CLIENTE_CLAVE = os.getenv('CLIENTE_CLAVE')
 RENOVADOR_TOKEN = os.getenv('RENOVADOR_TOKEN')
 
-bodyData = {
-    'refresh_token': '1000.17f18ede800490cab2d984487065d254.ca19c0cc1882c11edda82619fcb4d7ec',
-    'client_id': '1000.FPT5OY195MOQN7U9QCLWI9VOMGH3HF',
-    'client_secret': 'e0b87960d8d96ade3a1d3a113a37a5d051c6e9cb90',
-    'grant_type': 'refresh_token'
-}
+
 
 
 headers = {
