@@ -1,7 +1,7 @@
 import os
 from fastapi import FastAPI, HTTPException
 import requests
-from parsearDatos import obtenerCampanias
+from parsearDatos import obtenerCampanias, obtenerCasas
 from renovador import renovarToken
 
 
@@ -29,8 +29,9 @@ async def obtenerCasasDisponibles(id):
         if response.status_code == 200:
             # Si la solicitud es exitosa, devolver los datos
             d=response.json()
-            return d
-
+            # return d
+    
+            return list(obtenerCasas(d))
         else:
 
             # Si la solicitud no es exitosa, lanzar una excepción HTTP
