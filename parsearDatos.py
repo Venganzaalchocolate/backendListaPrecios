@@ -21,16 +21,24 @@ def obtenerCasas(jsonDatos):
         'nombrePropiedad':elemento['Product_Name'],
         # 'ID_propiedad':elemento['ID_Propiedad'],
         'precioPropiedad':elemento['Deed_Price'],
+        ##
+        'jardinPropiedad':elemento['Garden_Sq_Mts'],
+        'orientacionPropiedad':elemento['Orientation'],
+        'trasteroPropiedad':elemento['Related_TR'],
+        'portalPropiedad':elemento['Portal'],
+        'metrosUtilesPropiedad':elemento['Usable_Sq_Mts'],
+        'bloquePropiedad':elemento['Bloque'],
+        'plazaParkingPropiedad':elemento['Related_PK'],
+        ##
         'plantaPropiedad':elemento['Planta'],
         'habPropiedad': elemento['N_Bedroom'],
         'wcPropiedad': elemento['N_Bathroom'],
         'metrosPropiedad': elemento['Sq_Mts'],
         'metrosTerraza': elemento['Terrace_Sq_Mts'],
-        'campaniaPropiedad': elemento['Terrace_Sq_Mts'],
-        'metrosPropiedad': elemento['Sq_Mts'],
+        
 		
-	# 	campaniaPropiedad = propiedad.get("Promoci_n").get("id");
-	# 	campaniaNombre = propiedad.get("Promoci_n").get("name");
+	    # 	campaniaPropiedad = propiedad.get("Promoci_n").get("id");
+	    # 	campaniaNombre = propiedad.get("Promoci_n").get("name");
        }
       
       ,auxJson)
