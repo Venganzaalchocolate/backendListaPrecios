@@ -63,7 +63,10 @@ async def camTienePisos(id):
             # Si la solicitud es exitosa, devolver los datos
             d=response.json()
             # return d
-            return d['count']
+            if d['count'] > 0:
+              return True
+            else:
+              return False
         else:
 
             # Si la solicitud no es exitosa, lanzar una excepción HTTP
