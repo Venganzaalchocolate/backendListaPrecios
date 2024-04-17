@@ -28,9 +28,15 @@ def obtenerCasas(jsonDatos):
         'portalPropiedad':elemento['Portal'],
         'metrosUtilesPropiedad':elemento['Usable_Sq_Mts'],
         'bloquePropiedad':elemento['Bloque'],
-        'plazaParkingPropiedad':elemento['Related_PK'],
+        'plazaParking1':elemento['Related_PK'],
+        'plazaParking2':elemento['Related_Parking_2'],
+       
+        
+        
+        
         ##
         'plantaPropiedad':elemento['Planta'],
+        'puertaPropiedad':elemento['Puerta'],
         'habPropiedad': elemento['N_Bedroom'],
         'wcPropiedad': elemento['N_Bathroom'],
         'metrosPropiedad': elemento['Sq_Mts'],

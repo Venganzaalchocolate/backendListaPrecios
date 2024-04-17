@@ -44,7 +44,7 @@ async def obtener_campanias_disponibles():
     if campaniasactivas == '' or datetime.now() > tiempo + timedelta(minutes=50):
         campaniasactivas = await obtenerCampaniasActivas()
         tiempo = datetime.now()
-        await listafiltrada(campaniasactivas)
+        # await listafiltrada(campaniasactivas)
     return campaniasactivas
 
 # Ruta para obtener las casas disponibles para una campaña específica
