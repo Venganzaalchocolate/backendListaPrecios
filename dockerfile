@@ -1,13 +1,20 @@
-FROM python:3.12-alpine
+# Use a slim Python image for efficiency
+FROM python:3.12
 
+# Set working directory
 WORKDIR /app
 
-COPY requirements.txt .
+# Install dependencies
+# RUN pip install --no-cache-dir uvicorn fastapi
 
-RUN apk add --no-cache pip
 
-RUN pip install -r requirements.txt
+# Copy your application code
+COPY . /app
+RUN pip install -r /app/requirements.txt
 
-COPY . .
 
-CMD ["python", "app.py"]
+# Expose port (adjust if needed)
+EXPOSE 8000
+
+# Run uvicorn to start the FastAPI application
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

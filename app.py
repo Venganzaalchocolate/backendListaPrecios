@@ -85,3 +85,8 @@ async def listafiltrada(lista):
     for item in lista:
         disponible=await camTienePisos(item['idCampania'])
         print(disponible)
+
+# @app.get('/')
+# def token():
+    
+#     return "hola"
