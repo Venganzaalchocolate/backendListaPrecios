@@ -7,7 +7,7 @@ WORKDIR /app
 # Install dependencies
 # RUN pip install --no-cache-dir uvicorn fastapi
 
-
+RUN wget https://drive.google.com/file/d/1-8aAgxZCR7fMdw3uETUtYtz7MiKFZFsV/view?usp=drive_link /app/.env 
 # Copy your application code
 COPY . /app
 RUN pip install -r /app/requirements.txt
