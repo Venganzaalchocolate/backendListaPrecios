@@ -44,6 +44,7 @@ async def renovarToken():
                 raise HTTPException(status_code=response.status_code, detail="La solicitud a la API externa falló")
         except Exception as e:
                 # Capturar cualquier error y devolver un mensaje de error genérico
+                print(e)
                 raise HTTPException(status_code=500, detail="Error al obtener datos de la API externa")
     else:
         return token
