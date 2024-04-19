@@ -41,6 +41,7 @@ async def renovarToken():
                 token=datos['access_token']
                 return token
             else:
+                print(response.json())
                     # Si la solicitud no es exitosa, lanzar una excepción HTTP
                 raise HTTPException(status_code=response.status_code, detail="La solicitud a la API externa falló")
     except Exception as e:
