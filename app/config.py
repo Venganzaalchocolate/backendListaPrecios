@@ -15,6 +15,9 @@ bodyData = {
 }
 
 
-headers = {
+header = {
   'Content-Type': 'application/x-www-form-urlencoded'
 }
+
+def headerApi(token):
+    return { 'Authorization': 'Zoho-oauthtoken '+token }
