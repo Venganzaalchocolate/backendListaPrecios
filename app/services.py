@@ -1,8 +1,8 @@
 from .config import header, bodyData, headerApi
-import requests
+import requests # type: ignore
 from datetime import datetime, timedelta
 from .models import obtenerCampanias, obtenerCasas
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException # type: ignore
 
 token=0
 hora=0
@@ -77,7 +77,6 @@ async def obtenerCampaniasActivas():
         # Verificar el código de estado de la respuesta
         if response.status_code == 200:
             # Si la solicitud es exitosa, devolver los datos
-            
             d=response.json()
             return list(obtenerCampanias(d))
         else:

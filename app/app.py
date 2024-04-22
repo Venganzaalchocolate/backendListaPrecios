@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI # type: ignore
+from fastapi.middleware.cors import CORSMiddleware # type: ignore
 from datetime import datetime,time, timedelta
 from .services import renovarToken, obtenerCampaniasActivas, obtenerCasasDisponibles, obtenerCampanias, obtenerCasas
 
@@ -63,11 +63,3 @@ async def obtener_casas_disponibles(idcampania: int):
         pisos[idcampania] = await obtenerCasasDisponibles(idcampania)
 
     return pisos[idcampania]
-
-# Ruta para verificar si una campaña tiene casas disponibles
-    """ Verifica si una campaña específica tiene casas disponibles.
-    Consulta a Zoho si la campaña tiene casas disponibles y devuelve un valor booleano que indica si la campaña tiene casas disponibles.
-    """
-@app.get('/api/camtienepisos/{idcampania:int}')
-async def numero_casas_cam(idcampania: int):
-    return await camTienePisos(idcampania)
