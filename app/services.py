@@ -1,10 +1,34 @@
-import os
-from fastapi import FastAPI, HTTPException
+from .config import headers, bodyData
 import requests
-from parsearDatos import obtenerCampanias, obtenerCasas
-from renovador import renovarToken
+from datetime import datetime, timedelta
+from .models import obtenerCampanias, obtenerCasas
 
+token=0
+hora=0
 
+async def renovarToken():
+    global hora
+    global token
+
+    if  hora==0 or datetime.now() > hora + timedelta(minutes=50):
+        try:
+            # Hacer una solicitud GET a la API externa
+            response = requests.post("https://accounts.zoho.com/oauth/v2/token", data=bodyData, headers=headers )
+            # Verificar el código de estado de la respuesta
+            if response.status_code == 200:
+                    # Si la solicitud es exitosa, devolver los datos
+                datos=response.json()
+                hora=datetime.now()
+                token=datos['access_token']
+                return token
+            else:
+                    # Si la solicitud no es exitosa, lanzar una excepción HTTP
+                raise HTTPException(status_code=response.status_code, detail="La solicitud a la API externa falló")
+        except Exception as e:
+                # Capturar cualquier error y devolver un mensaje de error genérico
+                raise HTTPException(status_code=500, detail="Error al obtener datos de la API externa"+e)
+    else:
+        return token
 
 async def obtenerCasasDisponibles(id):
 
@@ -12,14 +36,7 @@ async def obtenerCasasDisponibles(id):
       tokenRenovado= await renovarToken()
     except:
       raise HTTPException(status_code=response.status_code, detail="No se pudo renovar el token")
-    
-    bodyData = {
-    'ejemplo': 'ejemplo',
-    }
-    headers = {
-    'Authorization': 'Zoho-oauthtoken '+tokenRenovado
-    }
-    
+       
     urlCampaniasActivas=f"https://www.zohoapis.com/crm/v2/products/search?criteria=(Status:equals:Available)AND(Promoci_n.id:equals:{id})"
     
     try:
@@ -30,7 +47,6 @@ async def obtenerCasasDisponibles(id):
             # Si la solicitud es exitosa, devolver los datos
             d=response.json()
             # return d
-    
             return list(obtenerCasas(d))
         else:
 
@@ -48,11 +64,7 @@ async def camTienePisos(id):
       tokenRenovado= await renovarToken()
     except:
       raise HTTPException(status_code=response.status_code, detail="No se pudo renovar el token")
-    
-    headers = {
-    'Authorization': 'Zoho-oauthtoken '+tokenRenovado
-    }
-    
+   
     urlCampaniasActivas=f"https://www.zohoapis.com/crm/v6/Products/actions/count?criteria=(Status:equals:Available)AND(Promoci_n.id:equals:{id})"
     
     try:
@@ -80,20 +92,12 @@ async def camTienePisos(id):
   
   
   
-
 async def obtenerCampaniasActivas():
     try:
       tokenRenovado= await renovarToken()
     except:
       raise HTTPException(status_code=response.status_code, detail="No se pudo renovar el token")
-    
-    bodyData = {
-    'ejemplo': 'ejemplo',
-    }
-    headers = {
-    'Authorization': 'Zoho-oauthtoken '+tokenRenovado
-    }
-    
+        
     urlCampaniasActivas="https://www.zohoapis.com/crm/v2/campaigns/search?criteria=(Status:equals:Active)"
     try:
         # Hacer una solicitud GET a la API externa
@@ -111,4 +115,5 @@ async def obtenerCampaniasActivas():
       
         # Capturar cualquier error y devolver un mensaje de error genérico
         raise HTTPException(status_code=500, detail="Error en el api al obtener las campañas activas")
+
 
