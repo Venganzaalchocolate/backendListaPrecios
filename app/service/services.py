@@ -1,13 +1,11 @@
 from .config import header, bodyData, headerApi
 import requests # type: ignore
 from datetime import datetime, timedelta
-from .models import obtenerCampanias, obtenerCasas
+from ..models.models import obtenerCampanias, obtenerCasas
 from fastapi import FastAPI, HTTPException # type: ignore
 
 token=0
 hora=0
-
-
 
 async def renovarToken():
     global hora
@@ -83,7 +81,6 @@ async def obtenerCampaniasActivas():
             # Si la solicitud no es exitosa, lanzar una excepción HTTP
             raise HTTPException(status_code=response.status_code, detail="No se pudo obtener las campañas activas")
     except Exception as e:
-      
         # Capturar cualquier error y devolver un mensaje de error genérico
         raise HTTPException(status_code=500, detail="Error en el api al obtener las campañas activas")
 

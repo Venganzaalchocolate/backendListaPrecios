@@ -3,14 +3,12 @@ FROM python:3.12
 
 # Set working directory
 WORKDIR /app
-
 # Install dependencies
 # RUN pip install --no-cache-dir uvicorn fastapi
 
 # Copy your application code
 COPY . /app
 RUN pip install -r /app/requirements.txt
-
 
 # Expose port (adjust if needed)
 EXPOSE 80
