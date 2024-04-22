@@ -123,6 +123,15 @@ La API de Prime Invest proporciona una herramienta para obtener información act
 
 ```
 
+##  IIU de Swagger
+La interfaz de Swagger te muestra un resumen claro de los puntos finales (endpoints) de la API, incluyendo sus descripciones, parámetros, formatos de solicitud y respuesta, y las operaciones disponibles (GET).
+
+- Probar llamadas a la API: Puedes probar directamente las funcionalidades de la API desde la IU de Swagger. Te permite construir solicitudes, especificar parámetros y ejecutar llamadas para ver las respuestas de la API. 
+
+  ```
+  /docs
+  ```
+
 
 ## Collaboradores
 - [Victoria Sampalo](https://github.com/Victoria-Sampalo)
