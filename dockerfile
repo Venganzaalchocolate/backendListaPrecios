@@ -1,17 +1,17 @@
-# Use a slim Python image for efficiency
+# Define la imagen base como Python 3.12
 FROM python:3.12
 
-# Set working directory
+# Establece el directorio de trabajo en /app
 WORKDIR /app
-# Install dependencies
-# RUN pip install --no-cache-dir uvicorn fastapi
 
-# Copy your application code
+# Copia todos los archivos y directorios del directorio actual a /app
 COPY . /app
+
+# Instala las dependencias desde requirements.txt
 RUN pip install -r /app/requirements.txt
 
-# Expose port (adjust if needed)
+# Exporta el puerto 80 para el tráfico web
 EXPOSE 80
 
-# Run uvicorn to start the FastAPI application
+# Inicia la aplicación Uvicorn
 CMD ["uvicorn", "app.app:app", "--host", "0.0.0.0", "--port", "80"]
