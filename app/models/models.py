@@ -1,16 +1,17 @@
 def obtenerCampanias(jsonDatos):
+    noAsignado="NO ASIGNADO"
     campanias=map(lambda elemento:
         {
             'idCampania':elemento['id'],
             'nombreCampania':elemento['Campaign_Name'],
             'contenidotabla':{
-                "FECHA APROBACIÓN PRECIOS": elemento['Fecha_aprobaci_n_precios'],
-                "NOMBRE EMPRESA COMERCIALIZADORA":  elemento['Nombre_empresa_comercializadora'],
-                "PROPIEDAD":  elemento['Propiedad'],
-                "CÓDIGO PRINEX PROMOCIÓN":  elemento['C_digo_Prinex_Promoci_n'],
-                "TIPO DE IMPUESTO":  elemento['Tipo_de_Impuesto'],
-                "OBRA TERMINADA/EN CURSO":  elemento['Obra_Terminada_En_curso'],
-                "DELEGACIÓN":  elemento['Delegaci_n']
+              "FECHA APROBACIÓN PRECIOS": elemento['Fecha_aprobaci_n_precios'] if elemento['Fecha_aprobaci_n_precios'] is not None else noAsignado,
+                "NOMBRE EMPRESA COMERCIALIZADORA":  elemento['Nombre_empresa_comercializadora']if elemento['Nombre_empresa_comercializadora'] is not None else noAsignado,
+                "PROPIEDAD":  elemento['Propiedad']if elemento['Propiedad'] is not None else noAsignado,
+                "CÓDIGO PRINEX PROMOCIÓN":  elemento['C_digo_Prinex_Promoci_n']if elemento['C_digo_Prinex_Promoci_n'] is not None else noAsignado,
+                "TIPO DE IMPUESTO":  elemento['Tipo_de_Impuesto']if elemento['Tipo_de_Impuesto'] is not None else noAsignado,
+                "OBRA TERMINADA/EN CURSO":  elemento['Obra_Terminada_En_curso']if elemento['Obra_Terminada_En_curso'] is not None else noAsignado,
+                "DELEGACIÓN":  elemento['Delegaci_n'] if elemento['Delegaci_n'] is not None else noAsignado,
             },
             'observaciones':{
                 'linea1':elemento['Observaciones']
