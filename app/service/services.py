@@ -68,7 +68,7 @@ async def obtenerCampaniasActivas():
     except:
       raise HTTPException(status_code=response.status_code, detail="No se pudo renovar el token")
         
-    urlCampaniasActivas="https://www.zohoapis.com/crm/v2/campaigns/search?criteria=(Status:equals:Active)"
+    urlCampaniasActivas="https://www.zohoapis.com/crm/v2/campaigns/search?criteria=(Visible_en_L_Precios:equals:true)"
     try:
         # Hacer una solicitud GET a la API externa
         response = requests.get(urlCampaniasActivas, headers=headerApi(tokenRenovado) )
@@ -77,6 +77,7 @@ async def obtenerCampaniasActivas():
             # Si la solicitud es exitosa, devolver los datos
             d=response.json()
             return list(obtenerCampanias(d))
+
         else:
             # Si la solicitud no es exitosa, lanzar una excepción HTTP
             raise HTTPException(status_code=response.status_code, detail="No se pudo obtener las campañas activas")

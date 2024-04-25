@@ -2,8 +2,23 @@ def obtenerCampanias(jsonDatos):
     campanias=map(lambda elemento:
         {
             'idCampania':elemento['id'],
-            'nombreCampania':elemento['Campaign_Name']
-            
+            'nombreCampania':elemento['Campaign_Name'],
+            'contenidotabla':{
+                "FECHA APROBACIÓN PRECIOS": elemento['Fecha_aprobaci_n_precios'],
+                "NOMBRE EMPRESA COMERCIALIZADORA":  elemento['Nombre_empresa_comercializadora'],
+                "PROPIEDAD":  elemento['Propiedad'],
+                "CÓDIGO PRINEX PROMOCIÓN":  elemento['C_digo_Prinex_Promoci_n'],
+                "TIPO DE IMPUESTO":  elemento['Tipo_de_Impuesto'],
+                "OBRA TERMINADA/EN CURSO":  elemento['Obra_Terminada_En_curso'],
+                "DELEGACIÓN":  elemento['Delegaci_n']
+            },
+            'observaciones':{
+                'linea1':elemento['Observaciones']
+            },
+            'comments':{
+                'linea1':elemento['Comments']
+            }
+
         }
         , jsonDatos['data'])
     return campanias
