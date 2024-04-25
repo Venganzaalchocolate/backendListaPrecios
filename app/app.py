@@ -54,3 +54,4 @@ async def obtener_casas_disponibles(idcampania: int):
     else:
         pisos[idcampania] = await obtenerCasasDisponibles(idcampania)
     return pisos[idcampania]
+
