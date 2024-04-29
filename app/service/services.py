@@ -86,3 +86,18 @@ async def obtenerCampaniasActivas():
         raise HTTPException(status_code=500, detail="Error en el api al obtener las campañas activas")
 
 
+def obtenerEnlaceLogo(id, tipo=".png"):
+  url=f"https://intranet.primeinvest.es/engine/files/logos/{id}{tipo}?_t=1714387133"
+  try:
+    response = requests.get(url)
+    if response.text.startswith("404"):
+        if tipo==".jpg":
+          return HTTPException(status_code=404, detail="No existe la imagen")
+        else:
+          return obtenerEnlaceLogo(id, ".jpg")
+    else:
+      # Si la solicitud no es exitosa, lanzar una excepción HTTP
+      return f"https://intranet.primeinvest.es/engine/files/logos/{id}{tipo}?_t=1714387133"
+  except Exception as e:
+    raise HTTPException(status_code=response.status_code, detail="No se pudo obtener el enlace")
+  

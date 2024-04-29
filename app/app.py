@@ -1,7 +1,7 @@
 from fastapi import FastAPI # type: ignore
 from fastapi.middleware.cors import CORSMiddleware # type: ignore
 from datetime import datetime,time, timedelta
-from .service.services import renovarToken, obtenerCampaniasActivas, obtenerCasasDisponibles, obtenerCampanias, obtenerCasas
+from .service.services import obtenerEnlaceLogo, renovarToken, obtenerCampaniasActivas, obtenerCasasDisponibles, obtenerCampanias, obtenerCasas
 
 app= FastAPI()
 
@@ -54,3 +54,8 @@ async def obtener_casas_disponibles(idcampania: int):
     else:
         pisos[idcampania] = await obtenerCasasDisponibles(idcampania)
     return pisos[idcampania]
+
+@app.get('/api/obtenerlogo/{idcampania:int}')
+def obtenerLogo(idcampania: int):
+    url= obtenerEnlaceLogo(idcampania)
+    return url
